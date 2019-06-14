@@ -1,0 +1,24 @@
+<scroll-view scroll-y class='class_scroll'>
+  <view class='class_wrap'>
+    <view class='class_owner'>张菲菲</view>
+
+    <view class="class_items {{item.isTouchMove ? 'touch_move_active' : ''}}" data-index="{{index}}" bindtouchstart="touchstart" bindtouchmove="touchmove" wx:for="{{items}}" wx:key="">
+      <view class='class_content'>
+        <view class='class_time'>
+          <view>08:00</view>
+          <view>09:00</view>
+        </view>
+        <view class='class_detail'>
+          <view class='class_status class_red'></view>
+          <view>瑜伽课</view>
+          <view>地址：北京市朝阳区北太平庄</view>
+        </view>
+      </view>
+      <view class="class_leave" catchtap="del" data-index="{{index}}">请假</view>
+    </view>
+  </view>
+  <view class='touchMoveTest' bindtouchstart="touchstart001" bindtouchmove="touchmove002">
+    <view>asdf</view>
+    <view class='{{ moveTest ? "actives":""}}'>fff</view>
+  </view>
+</scroll-view>

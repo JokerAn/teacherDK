@@ -1,0 +1,34 @@
+<view class='myStudentDM'>
+  <view class='curriculumList'>
+      <view>
+        <view class='curriculumOneTime'>15:00-16:00</view>
+        <view class='curriculumName'><text>数学</text>数学高一</view>
+        <view class='address'>石景山路54号院</view>
+        <view class='studentDM'>
+          <view class='schoolName'>北京怀柔</view>  
+          <view class='schoolTime'>星期三 2019.06.12</view>  
+        </view>
+      </view>
+    </view>
+    <view class='studentNameTitle'>
+      <text class='studentNameTitleName'>学生姓名</text>
+      <text bindtap='fanxuan'>反选</text>      <text bindtap='quanxuan'>一键全选</text>
+    </view>
+    <scroll-view class='studentList' scroll-y>
+      <checkbox-group class=' changeColorOdd' bindchange="checkboxChange">
+        <label class=" studentOne" wx:for="{{studentLists}}" wx:key='{{index}}'>
+          <view>{{index+1}}</view>
+          <view>张系统</view>
+          <checkbox value="{{index}}" checked="{{item.checked}}"/>{{item.value}}
+        </label>
+      </checkbox-group>
+      <checkbox-group>
+        <label class=" studentOne" wx:for="[0,1]" wx:key='{{index}}'>
+          <view> </view>
+        </label>
+      </checkbox-group>
+    </scroll-view>
+    <view class='dianmingwancheng'>
+      <text bindtap='dianmingF'>点名完成</text>
+  </view>
+</view>

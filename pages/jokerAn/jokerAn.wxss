@@ -1,0 +1,111 @@
+
+.class_scroll{
+  position: absolute;
+  /* height: calc(100% - 640rpx); */
+  overflow: auto;
+}
+.class_owner{
+  height: 62rpx;
+  line-height: 62rpx;
+  font-size: 24rpx;
+  border-top: 1rpx solid #e5e5e5;
+  border-bottom: 1rpx solid #f3f3f3;
+  background: #fbfbfb;
+  padding-left: 45rpx
+}
+.class_items{
+  font-size: 22rpx;
+  padding-left:45rpx; 
+  line-height: 36rpx;
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden
+}
+.class_content>view{
+  display: inline-block;
+  padding: 28rpx 0;
+  color:#252932;
+}
+.class_time{
+  width: 90rpx;
+}
+.class_detail{
+  position: relative;
+  width: 616rpx;
+  border-bottom:1rpx solid #e5e5e5;
+  text-indent: 25rpx
+}
+.class_status{
+  position: absolute;
+  top: 50rpx;
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 100%;
+}
+.class_red{
+  background: #fd4f55;
+}
+.class_pink{
+  background: #8253fc;
+}
+.class_yellow{
+  background: #fee75c;
+}
+.class_time view:last-child,.class_detail view:last-child{
+  color: #d0d0d0;
+}
+.class_wrap .class_items:last-child .class_detail{
+  border: 0;
+}
+.class_content {
+  width: 100%;
+  line-height: 22px;
+  margin-right:0;
+}
+.class_leave {
+  background-color: #f83055;
+  width: 141rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size:20rpx;
+  padding-left:30rpx;
+  color: #fff;
+  -webkit-transform: translateX(141rpx);
+  transform: translateX(141rpx);
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+.touch_move_active .class_content,
+.touch_move_active .class_leave {
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+}
+.touchMoveTest{
+  border:1px solid red;
+  display: flex;
+  justify-content: space-between;
+}
+.touchMoveTest>view{
+  border:1px solid blue;
+  padding:50rpx 50rpx;
+}
+.touchMoveTest view:last-child{
+  background-color: #f83055;
+  font-size:20rpx;
+  color: #fff;
+  -webkit-transform: translateX(137rpx);
+  transform: translateX(137rpx);
+  -webkit-transition: all 0.4s;
+  transition: all 0.4s;
+}
+.touchMoveTest view:first-child{
+  -webkit-transform: translateX(137rpx);
+  transform: translateX(137rpx);
+  margin-left:-137rpx;
+}
+.touchMoveTest>view.actives{
+  -webkit-transform: translateX(0rpx);
+  transform: translateX(0rpx);
+}

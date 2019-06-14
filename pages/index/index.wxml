@@ -1,0 +1,17 @@
+<!--index.wxml-->
+
+<view class="container">
+  <view class="userinfo">
+    <block wx:if='{{userInfo}}'>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto" wx:if='{{!authorization}}'>
+    <button class="login_btn" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">微信登录</button>
+  </view>
+    <navigator class='gotopage' url="../../pages/jokerAn/jokerAn"
+      open-type="switchTab"         hover-class="other-navigator-hover">JokerAn</navigator>
+    <navigator class='gotopage' url="../../pages/test/test"
+      open-type="navigate" hover-class="other-navigator-hover">test</navigator>
+</view>

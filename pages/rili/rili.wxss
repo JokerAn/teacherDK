@@ -1,0 +1,102 @@
+/* pages/rili/rili.wxss */
+.myRiLi{
+  padding:30rpx;
+}
+.qiandao{
+  color:#999;
+  font-size: 24rpx;
+  height:33rpx;
+  line-height: 33rpx;
+  padding-bottom:30rpx;
+}
+.qiandao>view:first-child{
+  margin-right: 137rpx;
+}
+.qiandao>view{
+  display: inline-block;
+}
+.qiandao>view view{
+  display: inline-block;
+}
+.tiems{
+  margin:0 30rpx;
+}
+.riliTiltle{
+ color:#333;
+ font-size: 26rpx;
+ font-weight: bold;
+}
+.riliTiltle>view{
+  width:14.2857%;
+  display: inline-block;
+  text-align: center;
+}
+.riliBox{
+  
+}
+.riliBox>view{
+  width:14.2857%;
+  display: inline-block;
+  text-align: center;
+  margin-top:20rpx;
+}
+.oneDay{
+  width:66rpx;
+  height:66rpx;
+  /* border:1px solid rgba(20,49,219,1); */
+  line-height: 66rpx;
+  margin:0 auto;
+  font-size: 26rpx;
+  border:1px solid transparent;
+  border-radius: 50%;
+}
+.tadayTrue .oneDay{
+  border-color:#fF3031;
+}
+.class_scroll{
+  overflow: auto;
+  height: calc(100vh - 730rpx);
+}
+.curriculumList{
+  margin-top:19rpx;
+}
+.curriculumList>view{
+  box-sizing: border-box;
+  height:196rpx;
+  padding:30rpx;
+  margin-top:19rpx;
+  position: relative;
+  background:linear-gradient(90deg,rgba(255,255,255,1) 0%,rgba(255,255,255,1) 100%);
+  border:1px solid #ddd;
+  border-radius:6rpx;
+}
+.curriculumOneTime{
+  font-size: 30rpx;
+  color:#333;
+}
+.curriculumName{
+  margin-top:10rpx;
+  font-size: 24rpx;
+  color:#999;
+}
+.curriculumName>text{
+  font-size: 28rpx;
+  color:#666;
+  margin:0 20rpx;
+}
+.address{
+  font-size: 24rpx;
+  color:#999;
+  margin-top:16rpx;
+}
+.studentDM{
+  position: absolute;
+  color:#FF3030;
+  font-size: 24rpx;
+  width:182rpx;
+  height:72rpx;
+  line-height: 72rpx;
+  text-align: center;
+  top:61rpx;
+  right: 30rpx;
+}

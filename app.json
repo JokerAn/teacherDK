@@ -1,0 +1,44 @@
+{
+  "pages": [
+    "pages/curriculum/curriculum",
+    "pages/studentDM/studentDM",
+    
+    "pages/rili/rili",
+    
+    "pages/index/index",
+    "pages/test/test",
+    "pages/jokerAn/jokerAn"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "教师打卡",
+    "navigationBarTextStyle": "black"
+  },
+    "permission": {
+      "scope.userLocation": {
+        "desc": "你的位置信息将用于小程序位置接口的效果展示"
+      }
+    },
+    "tabBar": {
+      "list": [
+        {
+          "pagePath": "pages/index/index",
+          "text": "首页",
+          "selectedIconPath": "images/tabbar/tab_calendar_s.png",
+          "iconPath": "images/tabbar/tab_calendar.png"
+        },
+        {
+          "pagePath": "pages/jokerAn/jokerAn",
+          "text": "jokerAn",
+          "selectedIconPath": "images/tabbar/tab_my_s.png",
+          "iconPath": "images/tabbar/tab_my.png"
+        }
+      ],
+      "color": "#b5a7be",
+      "selectedColor": "#fd4f55",
+      "backgroundColor": "#fff",
+      "borderStyle": "black"
+    },
+  "sitemapLocation": "sitemap.json"
+}

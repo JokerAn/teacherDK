@@ -1,0 +1,100 @@
+/* pages/curriculum/curriculum.wxss */
+.myCurriculum{
+  padding:15rpx 30rpx;
+}
+.rili{
+  width:45rpx;
+  height:49rpx;
+  float:right;
+}
+.nowTime{
+  color: #333333;
+  font-size:r32px;
+}
+.curriculumList{
+  margin-top:19rpx;
+}
+.curriculumList>view{
+  box-sizing: border-box;
+  height:196rpx;
+  padding:30rpx;
+  margin-top:19rpx;
+  position: relative;
+  background:linear-gradient(90deg,rgba(255,255,255,1) 0%,rgba(255,255,255,1) 100%);
+  border:1px solid #ddd;
+  border-radius:6rpx;
+}
+.studentDM{
+  position: absolute;
+  color:#FF3030;
+  font-size: 24rpx;
+  border:1px solid #999;
+  border-radius: 6rpx;
+  width:182rpx;
+  height:72rpx;
+  line-height: 72rpx;
+  text-align: center;
+  top:61rpx;
+  right: 30rpx;
+}
+.curriculumOneTime{
+  font-size: 30rpx;
+  color:#333;
+}
+.curriculumName{
+  margin-top:10rpx;
+  font-size: 24rpx;
+  color:#999;
+}
+.curriculumName>text{
+  font-size: 28rpx;
+  color:#666;
+  margin:0 20rpx;
+}
+.address{
+  font-size: 24rpx;
+  color:#999;
+  margin-top:16rpx;
+}
+.twoBtn{
+  width:690rpx;
+  height:231rpx;
+  position: fixed;
+  z-index: 10;
+  background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
+  bottom:0;
+}
+.twoBtn text{
+  margin-top:49rpx;
+  margin-left:68rpx;
+  display: inline-block;
+  width:248rpx;
+  height:84rpx;
+  line-height: 84rpx;
+  background:rgba(242,242,242,1);
+  border-radius:6rpx;
+  border:1px solid rgba(151,151,151,1);
+  text-align: center;
+  color:#696969;
+  font-size: 24rpx;
+}
+.curriculumList>view.active{
+  background:linear-gradient(90deg,#E41515 0%,#fff 100%);
+}
+.curriculumList>view.active>view{
+  color:rgba(255,255,255,0.9);
+}
+.curriculumList>view.active>view>text{
+  color:rgba(255,255,255,0.9);
+}
+.active>.studentDM{
+  background:#EA2121
+}
+.twoBtn text.xiakeActive{
+  background: #EA2121;
+  color:#fff;
+}
+.class_scroll{
+  overflow: auto;
+  height: 1260rpx;
+}

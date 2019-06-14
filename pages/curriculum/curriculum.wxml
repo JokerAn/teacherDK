@@ -1,0 +1,21 @@
+<view class='myCurriculum'>
+  <view class='nowTime'>
+    <text>星期三 2019.06.12</text>
+    <image class='rili' src='/images/rili.png' bindtap='gotoRiLi'></image>
+  </view>
+  <scroll-view class='class_scroll'  scroll-y>
+    <view class='curriculumList'>
+      <view wx:for="{{curriculumList}}" wx:key="index" data-index='{{index}}' class='{{item.selected ? "active" : "" }}' bindtap='selectCurriculum'>
+        <view class='curriculumOneTime'>15:00-16:00</view>
+        <view class='curriculumName'><text>数学</text>数学高一</view>
+        <view class='address'>石景山路54号院</view>
+        <view class='studentDM' catchtap='studentDM' data-index='{{index}}'>学生点名</view>
+      </view>
+    </view>
+  </scroll-view>
+  
+  <view class='twoBtn'>
+    <text bindtap='shangkeF'>上课</text>
+    <text bindtap='xiakeF' class='{{xiakeActive?"xiakeActive":""}}'>下课</text>
+  </view>
+</view>
