@@ -7,9 +7,13 @@ Page({
     dayNums:[],//本月的天数
     nowYear:0,
     nowMonth:0,
-    isToday:null,
+    isToday:null,//今天20190601
     date: ['日', '一', '二', '三', '四', '五', '六'],
-    curriculumList: [{ a: 1, selected: false, kaoqin: true }, { b: 2 }, { a: 1,selected: false, kaoqin: true }, { a: 1 }, { a: 1 }, { a: 1 }, { a: 1 }]
+    curriculumList: [
+      { a: 1, selected: false, dakaTrueOrFalse01: true, dakaTrueOrFalse02: false, kaoqin: false, showKaoQin:false},
+      { b: 2, selected: false, dakaTrueOrFalse01: true, dakaTrueOrFalse02: true, kaoqin: true, showKaoQin: false },
+      { c: 3, selected: false, dakaTrueOrFalse01: false, dakaTrueOrFalse02: false, kaoqin: false, showKaoQin: false },
+       { a: 1 }, { a: 1 }, { a: 1 }, { a: 1 }]
   },
 
   // 生命周期函数--监听页面加载
@@ -37,24 +41,29 @@ Page({
     }
     
     if (passmonth!==undefined){
-      passmonth = passmonth - 1//转换为计算机认识的月//最终的 data中的nowMonth存的是现实中的月份
+      passmonth = parseInt(passmonth)
     }else{
-      passmonth=new Date().getMonth();
+      passmonth=new Date().getMonth()+1;//变为现实中的月份
     }
-    let dayNums = this.data.dayNums;
+    this.setData({
+      isToday: '' + new Date().getFullYear() + ('0000' + (new Date().getMonth() + 1)).slice(-2) + new Date().getDate(),
+    });
+    let dayNums = [];//前边空白的格子+每个月有多少天
 
-    let day = new Date(passyear, (passmonth + 1),0).getDate();
-    let startWeek = new Date(passyear + ',' + (passmonth+1) + ',' + 1).getDay();//目标月1号对应的星期 
+    let day = new Date(passyear, passmonth,0).getDate();
+    
+    let startWeek = new Date(passyear + ',' + passmonth + ',' + 1).getDay();//目标月1号对应的星期 
+    console.log(passyear + '年' + passmonth + '月,' + 1 +'号，是星期'+ startWeek);
     let obj={};
     for (let i = 0; i < (day + startWeek);i++){
       let num=0;
       if (i >= startWeek){
          num = i - startWeek+1;
         let month0=0;
-        if (passmonth + 1>10){
-          month0 = passmonth + 1;
+        if (passmonth>10){
+          month0 = passmonth;
         }else{
-          month0 = '0' + (passmonth + 1);
+          month0 = '0' + passmonth;
         }
         obj={
           isToday: '' + passyear + month0 + num,//20190105
@@ -66,7 +75,7 @@ Page({
       dayNums[i] = obj;
       //
     }
-    let passmonths = ('0000' + (passmonth+1)).slice(-2);//最终存的时候转换为现实中的月份要+1；
+    let passmonths = ('0000' + passmonth).slice(-2);//最终存的时候转换为现实中的月份要+1；
     this.setData({
       dayNums:dayNums,
       nowYear: passyear,
@@ -109,6 +118,17 @@ Page({
   },
   selectCurriculum(event){
     console.log(event.currentTarget.dataset.index);
+    let curriculumList = this.data.curriculumList;
+    curriculumList.forEach((item,index)=>{
+      if (index == event.currentTarget.dataset.index){
+        item.showKaoQin = !item.showKaoQin;
+      }else{
+        item.showKaoQin = false;
+      }
+    })
+    this.setData({
+      curriculumList: curriculumList
+    })
   }
 
 

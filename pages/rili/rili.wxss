@@ -62,7 +62,7 @@
 }
 .curriculumList>view{
   box-sizing: border-box;
-  height:196rpx;
+  /* height:196rpx; */
   padding:30rpx;
   margin-top:19rpx;
   position: relative;
@@ -91,7 +91,6 @@
 }
 .studentDM{
   position: absolute;
-  color:#FF3030;
   font-size: 24rpx;
   width:182rpx;
   height:72rpx;
@@ -99,4 +98,33 @@
   text-align: center;
   top:61rpx;
   right: 30rpx;
+}
+.queqin{
+  color:#FF3030;
+}
+.quanqian{
+  color:#333;
+}
+.myRiLi .curriculumList>.dakaInfo{padding:0rpx;}
+.dakaInfo>view{
+  padding:20rpx;
+  display: flex;
+  justify-content: space-between;
+  border-bottom:1px solid #ddd;
+}
+.wjl{color:#FF3536;font-size:26rpx;font-weight: 500}
+.dakaInfo>view>text{
+  color:#666666;font-size:26rpx;font-weight: 500
+}
+.dakaInfo>view>view{
+  color:#333;font-size:26rpx;
+}
+.dakaInfo>view>view>view{
+  margin-bottom:11rpx;
+}
+.hasDaka.dakaTitle{
+  line-height: 70rpx;
+}
+.dakaTitle{
+  line-height: 30rpx;
 }

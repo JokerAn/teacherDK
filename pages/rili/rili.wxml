@@ -1,3 +1,5 @@
+<wxs module="filters" src="../../filters/filters.wxs"></wxs>
+
 <view class='myRiLi'>
   <view class='qiandao'>
     <view>共签到3天</view>
@@ -8,24 +10,51 @@
     </view>
   </view>
   <view class='riliTiltle'>
-    <view  wx:for='{{date}}' wx:key='{{index}}'>{{item}}</view>
+    <view wx:for='{{date}}' wx:key='{{index}}'>{{item}}</view>
   </view>
   <view class='riliBox'>
-    <view wx:for='{{dayNums}}' wx:key='{{index}}' class='{{isToday==item.isToday ? "tadayTrue" : ""}}'
-    bindtap='dayDetail' data-date='{{item.isToday}}'>
+    <view wx:for='{{dayNums}}' wx:key='{{index}}' class='{{isToday==item.isToday ? "tadayTrue" : ""}}' bindtap='dayDetail' data-date='{{item.isToday}}'>
       <view class='oneDay'>{{item.dateNum}}</view>
     </view>
   </view>
-    <scroll-view class='class_scroll'  scroll-y>
-    <view class='curriculumList'>
-      <view wx:for="{{curriculumList}}" wx:key="index" data-index='{{index}}' class='{{item.selected ? "active" : "" }}'         bindtap='selectCurriculum'>
-        <view class='curriculumOneTime'>15:00-16:00</view>
-        <view class='curriculumName'><text>数学</text>数学高一</view>
-        <view class='address'>石景山路54号院</view>
-        <view wx:if='{{item.kaoqin}}' class='studentDM' catchtap='studentDM' data-index='{{index}}'>全勤</view>
-        <view wx:else class='studentDM' catchtap='studentDM' data-index='{{index}}'>缺勤</view>
-      </view>
+  <view class='nowTime'>{{filters.nianyuerigang(isToday)}}</view>
+  <scroll-view class='class_scroll' scroll-y>
+    <view wx:for="{{curriculumList}}" wx:key="index" class='curriculumList'>
+        <view bindtap='selectCurriculum' data-index='{{index}}'>
+          <view class='curriculumOneTime'>15:00-16:00</view>
+          <view class='curriculumName'>
+            <text>数学</text>数学高一</view>
+          <view class='address'>石景山路54号院</view>
+          <view wx:if='{{item.kaoqin}}' class='studentDM quanqin' data-index='{{index}}'>全勤</view>
+          <view wx:else class='studentDM queqin' data-index='{{index}}'>缺勤</view>
+        </view>
+        <view class='dakaInfo' wx:if='{{item.showKaoQin}}'>
+          <view>
+            <view wx:if='{{item.dakaTrueOrFalse01}}'>
+              <view>12:50</view>
+              <view>石景山古城</view>
+            </view>
+            <view class='wjl' wx:else>
+              <text>无记录</text>
+            </view>
+            
+            <text class='dakaTitle {{item.dakaTrueOrFalse01?"hasDaka":""}}'>上课打卡</text>
+          </view>
+          <view>
+          <view wx:if='{{item.dakaTrueOrFalse02}}'>
+              <view>12:50</view>
+              <view>石景山古城</view>
+            </view>
+            <view class='wjl' wx:else>
+              <text>无记录</text>
+            </view>
+            
+            <text class='dakaTitle {{item.dakaTrueOrFalse02?"hasDaka":""}}'>下课打卡</text>
+          </view>
+        </view>
+      
     </view>
+
   </scroll-view>
 
 </view>

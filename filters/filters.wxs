@@ -1,0 +1,17 @@
+var filters = {
+
+  nianyuerigang: function (time) {
+
+    if (!time) return '';
+    var nian = time.slice(0,4);
+    var yue = time.slice(4,6);
+    var ri = time.slice(-2);
+
+    return nian +'-'+yue+'-'+ ri;
+    
+  }
+}
+
+module.exports = {
+  nianyuerigang: filters.nianyuerigang
+}
