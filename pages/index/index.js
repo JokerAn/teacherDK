@@ -5,8 +5,8 @@ import {
 import {
   http
 } from '../../utils/http.js';
-var anUtil = new util;
-var anHttp = new http;
+var anUtil = new util();
+var anHttp = new http();
 //获取应用实例
 const app = getApp()
 
@@ -55,7 +55,7 @@ Page({
         success: (loginResult) => {
           wx.getUserInfo({
             success: (getUserInfoResult) => {
-              anHttp.ajaxServe('get', 'http://10.10.113.28/common/api/v1/auth/wechat?code=' + loginResult.code, null)
+              anHttp.ajaxServe('get', 'https://api-test.ambow.com/common/api/v1/auth/wechat?code=' + loginResult.code, null)
                 .then(function(result) {
                   console.log(result);
                   this.setData({
@@ -115,7 +115,7 @@ Page({
       success: (loginResult) => {
         wx.getUserInfo({
           success: (getUserInfoResult) => {
-            anHttp.ajaxServe('get', 'http://10.10.113.28/common/api/v1/auth/wechat?code=' + loginResult.code, null)
+            anHttp.ajaxServe('get', 'https://api-test.ambow.com/common/api/v1/auth/wechat?code=' + loginResult.code, null)
               .then(function(result) {
                 console.log(result);
                 app.globalData.userOnly = result;

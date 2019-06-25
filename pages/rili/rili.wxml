@@ -1,5 +1,4 @@
 <wxs module="filters" src="../../filters/filters.wxs"></wxs>
-
 <view class='myRiLi'>
   <view class='qiandao'>
     <view>共签到3天</view>
@@ -13,25 +12,26 @@
     <view wx:for='{{date}}' wx:key='{{index}}'>{{item}}</view>
   </view>
   <view class='riliBox'>
-    <view wx:for='{{dayNums}}' wx:key='{{index}}' class='{{isToday==item.isToday ? "tadayTrue" : ""}}' bindtap='dayDetail' data-date='{{item.isToday}}'>
-      <view class='oneDay'>{{item.dateNum}}</view>
+    <view wx:for='{{dayNums}}' wx:key='{{index}}' 
+    class='{{isToday==item.isToday ? "tadayTrue" : ""}}' bindtap='dayDetail' data-date='{{item.isToday}}'>
+      <view class='oneDay  {{item.hasCurriculum ? "hasCurriculum" : "aaa"}}'>{{item.dateNum}}</view>
     </view>
   </view>
   <view class='nowTime'>{{filters.nianyuerigang(isToday)}}</view>
-  <scroll-view class='class_scroll' scroll-y>
+  <scroll-view class='class_scroll' scroll-y  wx:if='{{curriculumList.length>0}}'>
     <view wx:for="{{curriculumList}}" wx:key="index" class='curriculumList'>
         <view bindtap='selectCurriculum' data-index='{{index}}'>
-          <view class='curriculumOneTime'>15:00-16:00</view>
+          <view class='curriculumOneTime'>{{item.startTimeCopy}}-{{item.endTimeCopy}} {{item.teacherName||''}}</view>
           <view class='curriculumName'>
-            <text>数学</text>数学高一</view>
-          <view class='address'>石景山路54号院</view>
+            <text>{{item.className||''}}</text>{{item.curriculumName||''}}</view>
+          <view class='address'>{{item.classroomName||''}}</view>
           <view wx:if='{{item.kaoqin}}' class='studentDM quanqin' data-index='{{index}}'>全勤</view>
           <view wx:else class='studentDM queqin' data-index='{{index}}'>缺勤</view>
         </view>
         <view class='dakaInfo' wx:if='{{item.showKaoQin}}'>
           <view>
             <view wx:if='{{item.dakaTrueOrFalse01}}'>
-              <view>12:50</view>
+              <view>{{item.realStartTimeCopy}}</view>
               <view>石景山古城</view>
             </view>
             <view class='wjl' wx:else>
@@ -42,7 +42,7 @@
           </view>
           <view>
           <view wx:if='{{item.dakaTrueOrFalse02}}'>
-              <view>12:50</view>
+              <view>{{item.realEndTimeCopy}}</view>
               <view>石景山古城</view>
             </view>
             <view class='wjl' wx:else>
@@ -54,7 +54,12 @@
         </view>
       
     </view>
+    
+
 
   </scroll-view>
+  <view wx:else class='curriculumList' style="text-align:center">
+      暂无记录
+    </view>
 
 </view>

@@ -1,0 +1,25 @@
+<view id='myWD'>
+  <view class='teacherInfo'>
+    <view class='teacherName'>{{userName}}</view>
+    <!-- <view class='jobType'>教师</view> -->
+    <!-- <view class='address'>北京怀柔校区</view> -->
+  </view>
+  <view class='deits'>
+    <!-- <view class='changPassword' bindtap="gotoPage" data-path='../../pages/changPassWord/changPassWord'>
+      <image src='/images/wode/changPassword@2x.png'></image>
+      <text>修改密码</text>
+      <image src='/images/wode/jiantouright.png'></image>
+    </view>
+    <view class='yonghufankui' bindtap="gotoPage" data-path='../../pages/feedback/feedback'>
+      <image src='/images/wode/xingzhuang@2x.png'></image>
+      <text>用户反馈</text>
+      <image src='/images/wode/jiantouright.png'></image>
+    </view> -->
+    <view class='setting' bindtap="gotoPage" data-path='../../pages/setting/setting'>
+      <image src='/images/wode/setting@2x.png'></image>
+      <text>设置</text>
+      <image src='/images/wode/jiantouright.png'></image>
+    </view>
+  </view>
+
+</view>

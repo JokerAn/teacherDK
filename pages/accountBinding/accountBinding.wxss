@@ -1,0 +1,67 @@
+/* pages/accountBinding/accountBinding.wxss *//* pages/phoneLogin/phoneLogin.wxss */
+.login_btn{
+  width: 553rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #f63e5a;
+  font-size: 30rpx;
+  color: #fff;
+  margin-bottom: 22rpx;
+  border-radius:100px; 
+  text-align: center;
+}
+.login_group{
+  position: relative;
+  margin-bottom: 39rpx;
+}
+.login_input{
+  width: 260rpx;
+  height: 77rpx;
+  border-bottom: 1rpx solid #dfdfdf;
+  padding-left: 88rpx;
+  padding-right: 205rpx;
+}
+.login_group>image,.login_group>.login_code{
+  position: absolute;
+}
+.login_man_ico{
+  width: 44rpx;
+  height: 46rpx;
+  left: 11rpx;
+  top: 15rpx;
+}
+.login_phone_ico{
+  width: 30rpx;
+  height: 45rpx;
+  left: 18rpx;
+  top: 16rpx;
+}
+.login_phcolor{
+  font-size: 26rpx;
+  color: #dfdfdf
+}
+.login_code{
+  width: 170rpx;
+  height: 49rpx;
+  line-height: 45rpx;
+  border: 2rpx solid #fa3352;
+  color: #fa3352;
+  font-size: 24rpx;
+  background: #fff;
+  text-align: center;
+  border-radius: 100rpx; 
+  padding: 0;
+  top: 13rpx;
+  right: 0;
+}
+.login_tips{
+  position: absolute;
+  bottom: 60rpx;
+  width: 100%;
+  font-size:24rpx;
+  color: #9d8fa5;
+  text-align: center
+}
+.login_tips>text{
+  color: #412d5c
+}

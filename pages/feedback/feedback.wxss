@@ -1,0 +1,26 @@
+/* pages/feedback/feedback.wxss */
+.titleTop{
+  padding:30rpx;
+  font-size: 24rpx;
+  height:84rpx;
+  line-height: 84rpx;
+}
+.feedbackContent{
+  border:1px solid #ddd;
+  padding:30rpx;
+  font-size: 24rpx;
+}
+.placehoderClass{
+  font-size: 20rpx;color:#999;
+}
+.btnOk{
+  width:690rpx;
+  height:84rpx;
+  line-height: 84rpx;
+  text-align: center;
+  margin: 30rpx auto;
+  background: #EA1B1B;
+  font-size: 24rpx;
+  color:#fff;
+  border-radius: 6rpx;
+}

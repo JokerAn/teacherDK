@@ -96,5 +96,5 @@
 }
 .class_scroll{
   overflow: auto;
-  height: 1260rpx;
+  height: calc(100vh - 100rpx);
 }

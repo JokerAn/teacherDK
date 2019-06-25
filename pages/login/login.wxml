@@ -1,0 +1,24 @@
+<view id='login'>
+  <view>
+    <image src='../../images/login/logo.png'></image>
+  </view>
+  <view class='emailLogin' wx:if='{{!authorization}}'><!-- 如果没有权限用邮箱登录 -->
+    <view>
+      <text>用户名：</text>
+      <input type='text' bindinput='userNameF' value='{{userName}}'></input>
+    </view>
+    <view>
+      <text>密码：</text>
+      <input type='password' bindinput='userPwdF' value='{{userPwd}}'></input>
+    </view>
+    <view class='loginBtnBox'>
+      <button class="login_btn" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">登录</button>
+    </view>
+  </view>
+
+
+  <view class='loginBtnBox' wx:else><!-- 如果有权限尝试用微信登录 -->
+    <button class="login_btn" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="loginAn">微信登录</button>
+  </view>
+
+</view>

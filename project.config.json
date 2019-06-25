@@ -4,13 +4,21 @@
 		"ignore": []
 	},
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
+		"enhance": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true,
 		"autoAudits": false,
-		"checkInvalidKey": true
+		"checkInvalidKey": true,
+		"checkSiteMap": false,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.7.1",
@@ -40,7 +48,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 2,
+			"current": 6,
 			"list": [
 				{
 					"id": -1,
@@ -61,6 +69,33 @@
 					"name": "index",
 					"pathName": "pages/curriculum/curriculum",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "wode",
+					"pathName": "pages/wode/wode",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "changPassWord",
+					"pathName": "pages/changPassWord/changPassWord",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "老师打卡",
+					"pathName": "pages/curriculum/curriculum",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "学生打卡",
+					"pathName": "pages/studentDM/studentDM",
 					"scene": null
 				}
 			]

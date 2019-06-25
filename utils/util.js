@@ -1,5 +1,5 @@
 class util {
-  constructor() { }
+  constructor() {}
   formatTime = date => {
     const year = date.getFullYear()
     const month = date.getMonth() + 1
@@ -13,9 +13,26 @@ class util {
       return n[1] ? n : '0' + n
     }).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
   }
+  getdates(b, fengefu) {
+    if (fengefu == undefined) {
+      fengefu = ''
+    }
+    var month = new Date(b).getMonth() + 1 < 10 ? '0' + (new Date(b).getMonth() + 1) : new Date(b).getMonth() + 1;
+    var dates = new Date(b).getDate() < 10 ? '0' + new Date(b).getDate() : new Date(b).getDate();
+    return new Date(b).getFullYear() + fengefu + month + fengefu + dates;
+  };
+  shifen(times) {
+    if (!times) return '';
+    let time = new Date(times);
+    let timeHour = time.getHours() >= 10 ? time.getHours() : '0' + time.getHours();
+    let timeMinutes = time.getMinutes() >= 10 ? time.getMinutes() : '0' + time.getMinutes();
+    console.log(timeHour + ':' + timeMinutes);
+    return timeHour + ':' + timeMinutes;
+
+  };
 
 
-  showAlert(title, icon = 'none', time = 2000, success = function () { }, fail = function () { }, complete) {
+  showAlert(title, icon = 'none', time = 2000, success = function() {}, fail = function() {}, complete) {
     wx.showToast({
       title: title,
       icon: icon,

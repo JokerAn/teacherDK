@@ -1,0 +1,61 @@
+/* pages/wode/wode.wxss */
+#myWD{
+
+}
+#myWD .teacherInfo{
+  border:1px dashed #000;
+  width:700rpx;
+  margin:20rpx auto;
+  height:200rpx;
+  padding:30rpx;
+  box-sizing: border-box;
+}
+#myWD .teacherInfo .teacherName{
+  font-weight: 700;
+  font-size: 32rpx;
+  color:#333;
+  height:60rpx;
+  line-height: 60rpx;
+}
+#myWD .teacherInfo .jobType{
+  font-weight: 500;
+  font-size: 28rpx;
+  color:#666;
+  height:42rpx;
+  line-height: 42rpx;
+}
+#myWD .teacherInfo .address{
+  font-size: 24rpx;
+  color:#999;
+  height:36rpx;
+  line-height: 36rpx;
+}
+.deits view{
+  margin-top:30rpx;
+  height:84rpx;line-height:84rpx;
+  border-bottom:1px solid #ddd;
+  font-size: 28rpx;
+  color:#666;
+  padding:0 27rpx;
+}
+.deits view:first-child{
+  border-top:1px solid #ddd;
+}
+.deits text{
+  margin:0 20rpx;
+}    
+.deits .changPassword image:first-child{
+  width:17rpx;height:20rpx;
+}
+.deits .yonghufankui image:first-child{
+  width:20rpx;height:20rpx;
+}
+
+.deits .setting image:first-child{
+  width:21rpx;height:20rpx;
+}
+.deits >view>image:last-child{
+  width:16rpx;height:28rpx;
+  float:right;margin-top:30rpx;
+}
+

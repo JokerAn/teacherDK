@@ -1,0 +1,14 @@
+/* pages/setting/setting.wxss */
+#mySetting{
+  padding:20rpx 0;
+
+}
+.logout{
+  height:84rpx;
+  line-height: 84rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color:#000;
+  border-top:1px solid #ddd;
+  border-bottom:1px solid #ddd;
+}

@@ -1,0 +1,11 @@
+<view id='myFeedback'>
+  <view class='titleTop'><text>反馈内容</text></view>
+  <view class='feedbackContent'>
+    <textarea type='text' placeholder="请在这里留下您的宝贵意见" placeholder-class="placehoderClass" bindinput="textareaF"
+    value="{{feedbackContent}}"
+    ></textarea>
+  </view>
+  <view>
+    <view class='btnOk' bindtap="btnAjax">提交</view>
+  </view>
+</view>

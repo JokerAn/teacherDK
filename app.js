@@ -15,18 +15,18 @@ App({
               console.log('wx.login', loginResult);
               wx.getUserInfo({
                 success: getUserInfoResult => {
-                  // 可以将 res 发送给后台解码出 unionId
+                  // 可以将 res 发送给后台解码出 openid
                   console.log('wx.getUserInfo', getUserInfoResult)
-                  anHttp.ajaxServe('get', 'http://10.10.113.28/common/api/v1/auth/wechat?code=' + loginResult.code, null)
+                  anHttp.ajaxServe('get', 'https://api-test.ambow.com/common/api/v1/auth/wechat?code=' + loginResult.code, null)
                     .then(function (result) {
                       console.log(result);
                       if (me.userInfoReadyCallback) {
                         me.userInfoReadyCallback([getUserInfoResult, result, me.globalData.authorization]);
-                        console.log('index.js比app.js先获取到微信用户的基本信息')
+                        console.log('首页的.js比app.js先获取到微信用户的基本信息')
                       }else{
                         me.globalData.userOnly = result;
                         me.globalData.userInfo = getUserInfoResult;
-                        console.log('app.js比index.js先获取到微信用户的基本信息')
+                        console.log('app.js比 首页的.js先获取到微信用户的基本信息')
                       }
                     })  
                 }

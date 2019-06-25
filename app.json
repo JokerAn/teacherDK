@@ -1,10 +1,13 @@
 {
   "pages": [
-    "pages/curriculum/curriculum",
-    "pages/studentDM/studentDM",
-    
-    "pages/rili/rili",
-    
+        "pages/login/login",
+            "pages/accountBinding/accountBinding",
+    "pages/feedback/feedback",
+    "pages/setting/setting",
+    "pages/changPassWord/changPassWord",
+    "pages/curriculum/curriculum","pages/wode/wode",
+    "pages/studentDM/studentDM",  
+    "pages/rili/rili", 
     "pages/index/index",
     "pages/test/test",
     "pages/jokerAn/jokerAn"
@@ -23,14 +26,20 @@
     "tabBar": {
       "list": [
         {
-          "pagePath": "pages/index/index",
-          "text": "首页",
+          "pagePath": "pages/curriculum/curriculum",
+          "text": "教师打卡",
+          "selectedIconPath": "images/tabbar/teacherSelected.png",
+          "iconPath": "images/tabbar/teacher.png"
+        },
+        {
+          "pagePath": "pages/rili/rili",
+          "text": "日历",
           "selectedIconPath": "images/tabbar/tab_calendar_s.png",
           "iconPath": "images/tabbar/tab_calendar.png"
         },
         {
-          "pagePath": "pages/jokerAn/jokerAn",
-          "text": "jokerAn",
+          "pagePath": "pages/wode/wode",
+          "text": "我的",
           "selectedIconPath": "images/tabbar/tab_my_s.png",
           "iconPath": "images/tabbar/tab_my.png"
         }

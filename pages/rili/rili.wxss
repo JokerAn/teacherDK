@@ -38,7 +38,7 @@
   width:14.2857%;
   display: inline-block;
   text-align: center;
-  margin-top:20rpx;
+  margin-top:10rpx;
 }
 .oneDay{
   width:66rpx;
@@ -55,7 +55,7 @@
 }
 .class_scroll{
   overflow: auto;
-  height: calc(100vh - 730rpx);
+  height: calc(100vh - 726rpx);
 }
 .curriculumList{
   margin-top:19rpx;
@@ -128,3 +128,17 @@
 .dakaTitle{
   line-height: 30rpx;
 }
+.nowTime{
+  padding-bottom:16rpx;
+}
+.hasCurriculum:after{
+  display: inline-block;
+  color:#999;
+  content:'';
+  background: #666;
+  border:1px solid #666;
+  width:4rpx;height:4rpx;
+  position: relative;
+  left:2rpx;
+  top:2rpx;
+  }

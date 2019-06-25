@@ -1,12 +1,12 @@
 <view class='myStudentDM'>
   <view class='curriculumList'>
       <view>
-        <view class='curriculumOneTime'>15:00-16:00</view>
-        <view class='curriculumName'><text>数学</text>数学高一</view>
-        <view class='address'>石景山路54号院</view>
+        <view class='curriculumOneTime'>{{passData.startTimeCopy}}-{{passData.endTimeCopy}}</view>
+        <view class='curriculumName'><text>{{passData.className||''}}</text>{{passData.curriculumName||''}}</view>
+        <view class='address'>{{passData.classroomName||''}}</view>
         <view class='studentDM'>
-          <view class='schoolName'>北京怀柔</view>  
-          <view class='schoolTime'>星期三 2019.06.12</view>  
+          <view class='schoolName'>{{passData.orgName||''}}</view>  
+          <view class='schoolTime'>{{xingqi}} {{isToday}}</view>  
         </view>
       </view>
     </view>
@@ -18,7 +18,7 @@
       <checkbox-group class=' changeColorOdd' bindchange="checkboxChange">
         <label class=" studentOne" wx:for="{{studentLists}}" wx:key='{{index}}'>
           <view>{{index+1}}</view>
-          <view>张系统</view>
+          <view>{{item.schoolStudentName}}</view>
           <checkbox value="{{index}}" checked="{{item.checked}}"/>{{item.value}}
         </label>
       </checkbox-group>

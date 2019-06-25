@@ -13,5 +13,5 @@ var filters = {
 }
 
 module.exports = {
-  nianyuerigang: filters.nianyuerigang
+  nianyuerigang: filters.nianyuerigang,
 }

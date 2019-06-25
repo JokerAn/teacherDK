@@ -1,33 +1,67 @@
 // pages/studentDM/studentDM.js
 import { util } from '../../utils/util.js';
 import { http } from '../../utils/http.js';
+import { config } from '../../utils/api.js';
 var anUtil = new util();
 var anHttp = new http();
+var anConfig = new config();
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    studentLists: [
-      { a: 1,checked:true }, { a: 1 }, { a: 1 }, { a: 1 }, { a: 1 }, { a: 1 }, { a: 1 }, { a: 1 },
-      { a: 1 }, { a: 1 }, { a: 1 }, { a: 1 }, { a: 1 }, { a: 1 }, { a: 1 }, { a: 1 }
-      ]
+    studentLists: [],
+      passData:null,
+    isToday: null,//今天20190601
+    date: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
+    xingqi:null
+
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({ passData: JSON.parse(options.data) });
 
+    this.getStudentList();
+    let now=new Date();
+    let year = now.getFullYear();
+    let month = ('00'+(now.getMonth() + 1)).slice(-2);
+    let days = ('000' + now.getDate()).slice(-2);
+    let weekDay=now.getDay();
+    console.log(weekDay);
+    this.setData({
+      isToday: year + '.' + month + '.' + days,
+      xingqi: this.data.date[weekDay]
+    });
   },
   dianmingF(){
-    anUtil.showAlert('点名完成','success');
-    let canshu=this.data.studentLists.filter((item,index)=>{
-      return item.checked
+    let me = this;
+    console.log(this.data.passData)
+    
+    let studentsid=[];
+    this.data.studentLists.forEach((item,index)=>{
+      if (item.checked) {
+        studentsid.push(item.schoolStudentId)
+      }
     })
-    console.log(canshu);
+    // console.log(studentsid);
+    if(studentsid.length==0){
+      anUtil.showAlert('请选择要点名的学生','none')
+      return
+    }
 
+    anHttp.ajaxServe('post', anConfig.api.studentQD +'?scheduleId='+me.data.passData.id, studentsid,
+      ).then((result)=>{
+        console.log(result)
+
+        if (result.code =='SUCCEED'){
+          anUtil.showAlert('点名完成', 'success');
+        }
+      
+    })
   },
   //单独选中莫一个学生
   checkboxChange: function (e) {
@@ -64,5 +98,24 @@ Page({
     this.setData({
       studentLists: linshi
     })
+  },
+  getStudentList(){
+    let me = this;
+    console.log(this.data.passData)
+    anHttp.ajaxServe('get', anConfig.api.getStudentList, { scheduleId: this.data.passData.id}).then((request) => {
+      console.log(request)
+      if (request.code =='SUCCEED'){
+        if(request.data==null){request.data=[]}
+        request.data.map((item)=>{
+          item.checked=false;
+          return item
+        })
+        me.setData({
+          studentLists:request.data
+        })
+        console.log(this.data.studentLists)
+      }
+    })
   }
+
 })

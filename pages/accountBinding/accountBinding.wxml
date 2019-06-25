@@ -1,0 +1,18 @@
+
+<!--pages/phoneLogin/phoneLogin.wxml-->
+<view class='container' style='padding-top:100rpx'>
+  <view class='login_form'>
+    <view class='login_group'>
+      <!-- <image src='/images/login/icon_account.png' class='login_man_ico'></image> -->
+      <input type='text' class='login_input' bindinput ="userNameInput" value='{{userName}}' placeholder='请输入账号' placeholder-class='login_phcolor'/>
+    </view>
+    <view class='login_group' style='margin-bottom:107rpx;'>
+      <!-- <image src='/images/login/icon_registration.png' class='login_phone_ico'></image> -->
+      <input type='password' class='login_input' value='{{password}}' bindinput ="passWdInput" placeholder='请输入密码'   placeholder-class='login_phcolor'/>
+    </view>
+    <button class='login_btn' bindtap="acountBinding">绑定</button>
+  </view>
+</view>
+<view class='login_tips'>
+登录即表示你同意<text>《橄榄山家校通使用协议》</text>
+</view>
