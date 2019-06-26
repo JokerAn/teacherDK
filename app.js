@@ -3,16 +3,20 @@ import { http } from './utils/http.js'
 var anHttp=new http();
 App({
   onLaunch: function () {
+    console.log('app.js');
     var me =this;
     // 获取用户信息
     wx.getSetting({
       success: res => {
+        console.log('app.js wx.getSetting 获取权限成功');
         if (res.authSetting['scope.userInfo']) {
           console.log('已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框');
-          me.globalData.authorization = true;
           wx.login({
             success: (loginResult)=>{
-              console.log('wx.login', loginResult);
+              console.log('app.js中 wx.login成功 code 获取到', loginResult);
+              wx.setStorageSync('wxCode', loginResult.code);
+              me.globalData.authorization = true;
+
               wx.getUserInfo({
                 success: getUserInfoResult => {
                   // 可以将 res 发送给后台解码出 openid
@@ -31,6 +35,8 @@ App({
                     })  
                 }
               });
+            },fail:function(){
+              console.log('app.js中 wx.login失败个人 code 没有获取到')
             }
           }) 
         }else{
@@ -41,6 +47,8 @@ App({
             console.log('index.js比app.js先获取到微信用户的基本信息')
           }
         }
+      },fail:function(){
+        console.log('app.js getSetting没有权限');
       }
     })
   },

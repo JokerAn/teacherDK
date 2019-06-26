@@ -3,9 +3,9 @@
   <view class='qiandao'>
     <view>共签到3天</view>
     <view>
-      <view bindtap='preYear'>-</view>
+      <view bindtap='preYear' class='perYear'>-</view>
       <view class='tiems'>{{nowYear}}.{{nowMonth}}</view>
-      <view bindtap='nextYear'>+</view>
+      <view bindtap='nextYear' class='nextYear'>+</view>
     </view>
   </view>
   <view class='riliTiltle'>

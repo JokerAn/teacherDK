@@ -79,27 +79,40 @@ Page({
     })
   },
   onGotUserInfo: function (e) {
-    console.log(e)
-    this.setData({
-      userInfo: e.detail,
-    })
+    console.log(e.detail)
     let me = this;
 
+    if (e.detail) {
+      me.setData({
+        userInfo: e.detail,
+      })
+    } else {
+      console.log('用户拒绝了让本款小程序使用权限');
+    }
+
     if (me.data.userName === '' || me.data.userPwd === '') {
-      util.showAlert('请填写用户名和密码！');
+      anUtil.showAlert('请填写用户名和密码！');
       return
     }
 
     anHttp.ajaxServe('post', 'https://api-test.ambow.com/sps/api/v1/login', {
       "username": me.data.userName, "password": me.data.userPwd
     }, null).then(function (result) {
+      if (result.data.statusCode==401){
+        anUtil.showAlert('账户或密码错误')
+      }else{
+        wx.setStorageSync('userToken', result.tokenType + ' ' + result.token);
+        me.getMe();
+      }
       console.log(result);
-      wx.setStorageSync('userToken', result.tokenType + ' ' + result.token);
-      me.getMe();
+      
     })
   },
   loginAn: function (e) {
-    console.log('你点击了微信登录')
+    console.log('你点击了微信登录');
+    wx.showLoading({
+      title: '登录中'
+    })
     this.setData({
       userInfo: e.detail,
     })
@@ -107,8 +120,14 @@ Page({
     let me = this;
     this.bingOrUnbind();
   },
+  loginAnLoading(){
+    wx.showLoading({
+      title: '登录中..',
+    })
+  },
   //是否绑定
   bingOrUnbind() {
+    console.log(wx.getStorageSync('wxCode'))
     let me = this;
     wx.login({
       success(res) {
@@ -116,6 +135,10 @@ Page({
           'wx.login': res
         });
         if (res.code) {
+          wx.hideLoading();
+          wx.showLoading({
+            title: '查询绑定状态中',
+          })
           anHttp.ajaxServe('get', 'https://api-test.ambow.com/common/api/v1/auth/wechat' + '?code=' + res.code, null)
             .then(function (result) {
               me.setData({
@@ -126,6 +149,7 @@ Page({
               anHttp.ajaxServe('get',
                 'https://api-test.ambow.com/common/api/v1/auth/byRelationId' + "?relationId=" + result.openid, null)
                 .then((result002) => {
+                  wx.hideLoading();
                   if (result002 && result002.tokenType && result002.token) {
                     console.log('查询绑定结果：已经绑定了');
                     wx.setStorage({

@@ -142,3 +142,6 @@
   left:2rpx;
   top:2rpx;
   }
+  .nextYear,.perYear{
+    padding:4rpx 10rpx;
+  }

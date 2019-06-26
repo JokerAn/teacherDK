@@ -12,13 +12,13 @@
       <input type='password' bindinput='userPwdF' value='{{userPwd}}'></input>
     </view>
     <view class='loginBtnBox'>
-      <button class="login_btn" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo">登录</button>
+      <button class="login_btn" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo"  bindtap="loginAnLoading">登录</button>
     </view>
   </view>
 
 
   <view class='loginBtnBox' wx:else><!-- 如果有权限尝试用微信登录 -->
-    <button class="login_btn" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="loginAn">微信登录</button>
+    <button class="login_btn" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="loginAn" bindtap="loginAnLoading">微信登录</button>
   </view>
 
 </view>

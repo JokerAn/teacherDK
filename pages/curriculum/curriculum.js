@@ -62,8 +62,8 @@ Page({
       weekDay: weekDay
     })
 
-    anHttp.ajaxServe('get', anConfig.api.teacherCurriculumListByDate+'?date=' + anUtil.getdates(nowTime,'-'), null)
-    // anHttp.ajaxServe('get', anConfig.api.teacherCurriculumListByDate + '?date=2019-06-21', null)
+    // anHttp.ajaxServe('get', anConfig.api.teacherCurriculumListByDate+'?date=' + anUtil.getdates(nowTime,'-'), null)
+    anHttp.ajaxServe('get', anConfig.api.teacherCurriculumListByDate + '?date=2019-06-21', null)
       .then(function (result) {
         console.log(result);
         if (result.code =="SUCCEED"){
