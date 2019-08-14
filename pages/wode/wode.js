@@ -13,7 +13,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({
-      userName: wx.getStorageSync('userDisplayName')
+      userName: wx.getStorageSync('loginUserInfo').userName
     })
   },
   gotoPage(event){

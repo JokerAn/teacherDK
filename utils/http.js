@@ -26,7 +26,7 @@ class http {
     let header = jsonStr && jsonStr.header ? jsonStr.header : {
       'content-type': 'application/json',
     };
-    if (wx.getStorageSync('userToken')) { header['Authorization'] = wx.getStorageSync('userToken') }
+    if (wx.getStorageSync('userToken')) { header['token'] = wx.getStorageSync('userToken') }
 
     return new Promise((resolve, reject) => {
       wx.request({ //发送请求

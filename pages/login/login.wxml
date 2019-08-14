@@ -2,7 +2,8 @@
   <view>
     <image src='../../images/login/logo.png'></image>
   </view>
-  <view class='emailLogin' wx:if='{{!authorization}}'><!-- 如果没有权限用邮箱登录 -->
+  <!-- <view class='emailLogin' wx:if='{{!authorization}}'>如果没有权限用邮箱登录 -->
+  <view class='emailLogin' wx:if='true'>
     <view>
       <text>用户名：</text>
       <input type='text' bindinput='userNameF' value='{{userName}}'></input>

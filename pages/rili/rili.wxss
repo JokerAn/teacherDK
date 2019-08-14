@@ -31,9 +31,6 @@
   display: inline-block;
   text-align: center;
 }
-.riliBox{
-  
-}
 .riliBox>view{
   width:14.2857%;
   display: inline-block;
