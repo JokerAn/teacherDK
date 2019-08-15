@@ -37,6 +37,14 @@ class http {
         success: res => {
           // console.log(res);
           if (res.statusCode == 200 && res.data) {
+            if (res.data.message == '未登录或认证过期') {
+              anUtil.showAlert("请重新登录", 'none', 1500);
+              wx.clearStorage();
+              wx.navigateTo({
+                url: '/pages/login/login',
+              })
+
+            }
             resolve(res.data);
           } else {
             if (!res.data) {
@@ -45,6 +53,8 @@ class http {
               });
             }
           }
+          
+          
           if (res.statusCode == 400) {
             anUtil.showAlert("请求错误", 'none', 1500);
 

@@ -121,7 +121,6 @@ Page({
       imgcode: '',
       anonymouslogin: false
     };
-    console.log('----------------');
     anHttp.ajaxServe('post', anConfig.api.login, loginForm).then(function (result) {
       wx.hideLoading();
       if (result.data.statusCode == 401) {
@@ -138,7 +137,6 @@ Page({
         }
 
       }
-      console.log(result);
     })
     
   },

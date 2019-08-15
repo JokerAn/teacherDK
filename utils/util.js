@@ -26,7 +26,7 @@ class util {
     let time = new Date(times);
     let timeHour = time.getHours() >= 10 ? time.getHours() : '0' + time.getHours();
     let timeMinutes = time.getMinutes() >= 10 ? time.getMinutes() : '0' + time.getMinutes();
-    console.log(timeHour + ':' + timeMinutes);
+    // console.log(timeHour + ':' + timeMinutes);
     return timeHour + ':' + timeMinutes;
 
   };

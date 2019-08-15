@@ -12,10 +12,12 @@ Page({
    */
   data: {
     teacherId: '',
+    teacherSignCnt:null,
     curriculumList: [],
     curriculumSelected: {},
     xiakeActive: false,
     canDK: false,
+    dkText: { name: '签到',msg:''},
     isToday: null,//今天20190601
     date: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
     weekDay: null
@@ -30,10 +32,9 @@ Page({
   },
 
   selectCurriculum(event) {
-
+    let nowTime=new Date()-0;
     this.setData({
-      xiakeActive: true,
-      canDK: true
+      xiakeActive: true
     })
     let indexs = event.currentTarget.dataset.index
     console.log(indexs);
@@ -45,12 +46,42 @@ Page({
       }
 
     });
-    console.log(this.data.curriculumList);
+    
 
     this.setData({
       curriculumList: this.data.curriculumList,
       curriculumSelected: this.data.curriculumList[indexs]
     })
+
+    console.log(this.data.curriculumList[indexs]);
+    if (this.data.curriculumList[indexs]){
+
+    }
+    if (this.data.curriculumList[indexs].realStartTime){
+      this.setData({
+        canDK: false,
+        dkText: {name:'已签到',msg:'请勿重复签到！'}
+      })
+    }else{
+      //上课前30个小时和下课后30个小时之内可以打卡 
+      if (nowTime - new Date(this.data.curriculumList[indexs].endTime) / 3600 / 1000 > 30) {
+        this.setData({
+          canDK: false,
+          dkText: { name: '签到已过时', msg: '签到时间已过，请联系管理员' }
+        })
+      } else if (new Date(this.data.curriculumList[indexs].startTime) - nowTime / 3600 / 1000 > 30) {
+        this.setData({
+          canDK: false,
+          dkText: { name: '签到未开始', msg: '签到未开始，请耐心等待' }
+        })
+      } else {
+        this.setData({
+          canDK: true,
+          dkText: { name: '签到', msg: '' }
+        })
+      }
+    }
+    
 
   },
   getTeacherInfoByUserId() {
@@ -59,13 +90,13 @@ Page({
       userId: wx.getStorageSync('loginUserInfo').userId
     })
       .then(function (result) {
-        console.log(result);
         if (result.sucess) {
           //设置假数据
           result.data.teacherId = 58;
           wx.setStorageSync('teacherInfo', result.data);
           me.setData({
-            teacherId: result.data.teacherId
+            teacherId: result.data.teacherId,
+            teacherSignCnt: result.data.teacherSignCnt
           })
           me.getPageList();
 
@@ -81,14 +112,13 @@ Page({
       isToday: isToday,
       weekDay: weekDay
     })
-    // anHttp.ajaxServe('get', anConfig.api.teacherCurriculumListByDate, {
-    //   teacherId: this.data.teacherId, date: '2019-06-21'
-    // })  
     anHttp.ajaxServe('get', anConfig.api.teacherCurriculumListByDate, {
-      teacherId: this.data.teacherId, date: anUtil.getdates(nowTime, '-')
-    })
+      teacherId: this.data.teacherId, date: '2019-08-14'
+    })  
+    // anHttp.ajaxServe('get', anConfig.api.teacherCurriculumListByDate, {
+    //   teacherId: this.data.teacherId, date: anUtil.getdates(nowTime, '-')
+    // })
       .then(function (result) {
-        console.log(result);
         if (result.sucess) {
           if (result.data == null) { result.data = [] }
           result.data.map((item) => {
@@ -112,14 +142,36 @@ Page({
       url: '../../pages/studentDM/studentDM?data=' + JSON.stringify(this.data.curriculumList[event.currentTarget.dataset.index])
     })
   },
-  shangkeF() {
+  qiandaoF() {
+    let me = this;
     if (this.data.canDK) {
       console.log(this.data.curriculumSelected)
       anHttp.ajaxServe('post', anConfig.api.teacherDK + '?userId=' + wx.getStorageSync('loginUserInfo').userId + '&scheduleId=' + this.data.curriculumSelected.id + '&signType=1' + '&courseType=' + this.data.curriculumSelected.courseType, null)
         .then(function (result) {
           console.log(result);
-          if (result.code == "SUCCEED") {
+          if (result.sucess) {
+            anUtil.showAlert('签到成功', 'success')
+            me.getPageList();
+          } else {
+            anUtil.showAlert('签到失败', 'none')
+          }
+
+        })
+
+    }else{
+      anUtil.showAlert(this.data.dkText.msg, 'none')
+    }
+  },
+  shangkeF() {
+    let me = this;
+    if (this.data.canDK) {
+      console.log(this.data.curriculumSelected)
+      anHttp.ajaxServe('post', anConfig.api.teacherDK + '?userId=' + wx.getStorageSync('loginUserInfo').userId + '&scheduleId=' + this.data.curriculumSelected.id + '&signType=1' + '&courseType=' + this.data.curriculumSelected.courseType, null)
+        .then(function (result) {
+          console.log(result);
+          if (result.sucess) {
             anUtil.showAlert('打卡成功', 'success')
+            me.getPageList();
           } else {
             anUtil.showAlert('打卡失败', 'none')
           }
@@ -129,13 +181,14 @@ Page({
     }
   },
   xiakeF() {
+    let me = this ;
     if (this.data.canDK) {
       console.log(this.data.curriculumSelected)
       anHttp.ajaxServe('post', anConfig.api.teacherDK + '?orgId=' + this.data.curriculumSelected.orgId + '&scheduleId=' + this.data.curriculumSelected.id + '&signType=2', null)
         .then(function (result) {
-          console.log(result);
-          if (result.code == "SUCCEED") {
+          if (result.sucess) {
             anUtil.showAlert('打卡成功', 'success')
+            me.getPageList();
           } else {
             anUtil.showAlert('打卡失败', 'none')
           }

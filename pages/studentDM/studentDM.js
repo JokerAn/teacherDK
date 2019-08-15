@@ -24,6 +24,7 @@ Page({
    */
   onLoad: function (options) {
     this.setData({ passData: JSON.parse(options.data) });
+    console.log(JSON.parse(options.data))
 
     this.getStudentList();
     let now=new Date();
@@ -53,11 +54,11 @@ Page({
       return
     }
 
-    anHttp.ajaxServe('post', anConfig.api.studentQD +'?scheduleId='+me.data.passData.id, studentsid,
+    anHttp.ajaxServe('post', anConfig.api.studentQD + '?scheduleId=' + me.data.passData.id + '&userId=' + wx.getStorageSync('loginUserInfo').userId +'&courseType='+this.data.passData.courseType, studentsid,
       ).then((result)=>{
         console.log(result)
 
-        if (result.code =='SUCCEED'){
+        if (result.sucess){
           anUtil.showAlert('点名完成', 'success');
         }
       
@@ -102,9 +103,8 @@ Page({
   getStudentList(){
     let me = this;
     console.log(this.data.passData)
-    anHttp.ajaxServe('get', anConfig.api.getStudentList, { scheduleId: this.data.passData.id}).then((request) => {
-      console.log(request)
-      if (request.code =='SUCCEED'){
+    anHttp.ajaxServe('get', anConfig.api.getStudentList, { scheduleId: this.data.passData.id, courseType: this.data.passData.courseType}).then((request) => {
+      if (request.sucess){
         if(request.data==null){request.data=[]}
         request.data.map((item)=>{
           item.checked=false;

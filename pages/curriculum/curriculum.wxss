@@ -56,19 +56,34 @@
   color:#999;
   margin-top:16rpx;
 }
-.twoBtn{
+.twoBtn,.oneBtn{
   width:690rpx;
-  height:231rpx;
+  height:150rpx;
   position: fixed;
   z-index: 10;
   background:linear-gradient(180deg,rgba(255,255,255,0) 0%,rgba(255,255,255,1) 100%);
   bottom:0;
 }
 .twoBtn text{
-  margin-top:49rpx;
   margin-left:68rpx;
   display: inline-block;
   width:248rpx;
+  height:84rpx;
+  line-height: 84rpx;
+  background:rgba(242,242,242,1);
+  border-radius:6rpx;
+  border:1px solid rgba(151,151,151,1);
+  text-align: center;
+  color:#696969;
+  font-size: 24rpx;
+}
+.oneBtn{
+  text-align: center;
+}
+.oneBtn text{
+  margin-top:49rpx;
+  display: inline-block;
+  width:350rpx;
   height:84rpx;
   line-height: 84rpx;
   background:rgba(242,242,242,1);
@@ -97,4 +112,5 @@
 .class_scroll{
   overflow: auto;
   height: calc(100vh - 100rpx);
+  padding-bottom:100rpx;
 }
