@@ -11,10 +11,11 @@ Page({
    * 页面的初始数据
    */
   data: {
+    qiandaoTime:300,//上课前后多少小时可以签到
     teacherId: '',
     teacherSignCnt:null,
     curriculumList: [],
-    curriculumSelected: {},
+    curriculumSelected: [],
     xiakeActive: false,
     canDK: false,
     dkText: { name: '签到',msg:''},
@@ -29,6 +30,16 @@ Page({
   onLoad: function () { },
   onShow: function (options) {
     this.getTeacherInfoByUserId();
+    
+  },
+  //生命周期函数--监听页面隐藏
+ 
+  onHide: function () {
+    this.setData({
+      canDK: false,
+      curriculumSelected: [],
+      curriculumList:[]
+    })
   },
 
   selectCurriculum(event) {
@@ -50,7 +61,7 @@ Page({
 
     this.setData({
       curriculumList: this.data.curriculumList,
-      curriculumSelected: this.data.curriculumList[indexs]
+      curriculumSelected: [this.data.curriculumList[indexs]]
     })
 
     console.log(this.data.curriculumList[indexs]);
@@ -64,12 +75,13 @@ Page({
       })
     }else{
       //上课前30个小时和下课后30个小时之内可以打卡 
-      if (nowTime - new Date(this.data.curriculumList[indexs].endTime) / 3600 / 1000 > 30) {
+      console.log(this.data.qiandaoTime);
+      if ((nowTime - new Date(this.data.curriculumList[indexs].endTime)) / 3600000 > this.data.qiandaoTime) {
         this.setData({
           canDK: false,
           dkText: { name: '签到已过时', msg: '签到时间已过，请联系管理员' }
         })
-      } else if (new Date(this.data.curriculumList[indexs].startTime) - nowTime / 3600 / 1000 > 30) {
+      } else if ((new Date(this.data.curriculumList[indexs].startTime) - nowTime) / 3600000 > this.data.qiandaoTime) {
         this.setData({
           canDK: false,
           dkText: { name: '签到未开始', msg: '签到未开始，请耐心等待' }
@@ -113,7 +125,7 @@ Page({
       weekDay: weekDay
     })
     anHttp.ajaxServe('get', anConfig.api.teacherCurriculumListByDate, {
-      teacherId: this.data.teacherId, date: '2019-08-14'
+      teacherId: this.data.teacherId, date: '2019-08-13'
     })  
     // anHttp.ajaxServe('get', anConfig.api.teacherCurriculumListByDate, {
     //   teacherId: this.data.teacherId, date: anUtil.getdates(nowTime, '-')
@@ -145,8 +157,8 @@ Page({
   qiandaoF() {
     let me = this;
     if (this.data.canDK) {
-      console.log(this.data.curriculumSelected)
-      anHttp.ajaxServe('post', anConfig.api.teacherDK + '?userId=' + wx.getStorageSync('loginUserInfo').userId + '&scheduleId=' + this.data.curriculumSelected.id + '&signType=1' + '&courseType=' + this.data.curriculumSelected.courseType, null)
+      console.log(this.data.curriculumSelected[0])
+      anHttp.ajaxServe('post', anConfig.api.teacherDK + '?userId=' + wx.getStorageSync('loginUserInfo').userId + '&scheduleId=' + this.data.curriculumSelected[0].id + '&signType=1' + '&courseType=' + this.data.curriculumSelected[0].courseType, null)
         .then(function (result) {
           console.log(result);
           if (result.sucess) {
@@ -165,8 +177,8 @@ Page({
   shangkeF() {
     let me = this;
     if (this.data.canDK) {
-      console.log(this.data.curriculumSelected)
-      anHttp.ajaxServe('post', anConfig.api.teacherDK + '?userId=' + wx.getStorageSync('loginUserInfo').userId + '&scheduleId=' + this.data.curriculumSelected.id + '&signType=1' + '&courseType=' + this.data.curriculumSelected.courseType, null)
+      console.log(this.data.curriculumSelected[0])
+      anHttp.ajaxServe('post', anConfig.api.teacherDK + '?userId=' + wx.getStorageSync('loginUserInfo').userId + '&scheduleId=' + this.data.curriculumSelected[0].id + '&signType=1' + '&courseType=' + this.data.curriculumSelected[0].courseType, null)
         .then(function (result) {
           console.log(result);
           if (result.sucess) {
@@ -183,8 +195,8 @@ Page({
   xiakeF() {
     let me = this ;
     if (this.data.canDK) {
-      console.log(this.data.curriculumSelected)
-      anHttp.ajaxServe('post', anConfig.api.teacherDK + '?orgId=' + this.data.curriculumSelected.orgId + '&scheduleId=' + this.data.curriculumSelected.id + '&signType=2', null)
+      console.log(this.data.curriculumSelected[0])
+      anHttp.ajaxServe('post', anConfig.api.teacherDK + '?orgId=' + this.data.curriculumSelected[0].orgId + '&scheduleId=' + this.data.curriculumSelected[0].id + '&signType=2', null)
         .then(function (result) {
           if (result.sucess) {
             anUtil.showAlert('打卡成功', 'success')

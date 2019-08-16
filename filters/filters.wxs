@@ -9,9 +9,23 @@ var filters = {
 
     return nian +'-'+yue+'-'+ ri;
     
-  }
+  },
+  qiandaoType:function(type){
+    console.log(type)
+    var text='';
+    switch (type){
+      case 0:
+      text='未签到'
+      break
+      default:
+      text='已签到'
+    }
+    return text
+  } 
+
 }
 
 module.exports = {
   nianyuerigang: filters.nianyuerigang,
+  qiandaoType: filters.qiandaoType
 }

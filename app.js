@@ -8,6 +8,7 @@ App({
     // 获取用户信息
     wx.getSetting({
       success: res => {
+        console.log(res);
         console.log('app.js wx.getSetting 获取权限成功');
         if (res.authSetting['scope.userInfo']) {
           console.log('已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框');

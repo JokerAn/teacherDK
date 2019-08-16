@@ -96,9 +96,13 @@
 }
 .studentOne{
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   padding:22rpx;
   font-size: 24rpx;
+ }
+ .studentOne>.studentName{
+  width:280rpx;
+  text-align: center;
  }
  .changeColorOdd label:nth-child(odd){
    background: #eee;

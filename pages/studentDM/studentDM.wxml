@@ -1,3 +1,5 @@
+<wxs module="filters" src="../../filters/filters.wxs"></wxs>
+
 <view class='myStudentDM'>
   <view class='curriculumList'>
       <view>
@@ -17,8 +19,9 @@
     <scroll-view class='studentList' scroll-y>
       <checkbox-group class=' changeColorOdd' bindchange="checkboxChange">
         <label class=" studentOne" wx:for="{{studentLists}}" wx:key='{{index}}'>
-          <view>{{index+1}}</view>
-          <view>{{item.schoolStudentName}}</view>
+          <view class='index'>{{index+1}}</view>
+          <view class='studentName'>{{item.schoolStudentName}}</view>
+          <view>{{filters.qiandaoType(item.signState)}}</view>
           <checkbox value="{{index}}" checked="{{item.checked}}"/>{{item.value}}
         </label>
       </checkbox-group>

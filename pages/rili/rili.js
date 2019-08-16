@@ -10,6 +10,8 @@ Page({
   // 页面的初始数据
    
   data: {
+    teacherSignCnt: wx.getStorageSync('teacherInfo').teacherSignCnt,
+    qiandaoCount: 0,
     dayNums:[],//本月的天数
     nowYear:0,
     nowMonth:0,
@@ -45,10 +47,12 @@ Page({
     let me = this ;
     anHttp.ajaxServe('get',anConfig.api.getRiLiAll,{
       yearStr:me.data.nowYear,
-      monthStr: me.data.nowMonth
+      monthStr: me.data.nowMonth,
+        userid:wx.getStorageSync('loginUserInfo').userId,
+      teacherId: wx.getStorageSync('teacherInfo').teacherId
     }).then((result)=>{
       console.log(result);
-      if (result.code =='SUCCEED'){
+      if (result.sucess){
         let hasCurriculumDay=[];
         result.data.calendarDayList.forEach((item)=>{
           item.dateNYR = anUtil.getdates(item.dateYmd);
@@ -56,6 +60,7 @@ Page({
         })
         me.setData({
           hasCurriculum: hasCurriculumDay,
+          qiandaoCount: result.data.signCount
         })
         console.log(me.data.hasCurriculum)
         me.getDayNums();
@@ -187,10 +192,10 @@ Page({
   getCurriculumByData(){
     let me = this;
     let nowTime = this.data.isToday.slice(0, 4) + '-' + this.data.isToday.slice(4,6) + '-' + this.data.isToday.slice(-2);
-      anHttp.ajaxServe('get', anConfig.api.teacherCurriculumListByDate+'?date=' + nowTime, null)
+    anHttp.ajaxServe('get', anConfig.api.teacherCurriculumListByDate + '?date=' + nowTime + '&userId=' + wx.getStorageSync('loginUserInfo').userId +'&teacherId='+wx.getStorageSync('teacherInfo').teacherId, null)
       .then(function (result) {
         console.log(result);
-        if (result.code == "SUCCEED") {
+        if (result.sucess) {
           if (result.data == null) { result.data = [] }
           result.data.map((item) => {
             item.showKaoQin = false;
@@ -217,4 +222,4 @@ Page({
   }
 
 
-})
+})          

@@ -2,7 +2,7 @@
   <view class='teacherInfo'>
     <view class='teacherName'>{{userName}}</view>
     <!-- <view class='jobType'>教师</view> -->
-    <!-- <view class='address'>北京怀柔校区</view> -->
+    <view class='address'>{{orgName}}</view>
   </view>
   <view class='deits'>
     <!-- <view class='changPassword' bindtap="gotoPage" data-path='../../pages/changPassWord/changPassWord'>

@@ -14,11 +14,11 @@
     </view>
   </scroll-view>
   
-  <view class='twoBtn' wx:if='{{teacherSignCnt==2}}'>
+  <view class='twoBtn' wx:if='{{teacherSignCnt==2&&curriculumSelected.length>0}}'>
     <text bindtap='shangkeF'>上课</text>
     <text bindtap='xiakeF' class='{{xiakeActive?"xiakeActive":""}}'>下课</text>
   </view>
-  <view class='oneBtn'wx:if='{{teacherSignCnt==1}}'>
+  <view class='oneBtn'wx:if='{{teacherSignCnt==1&&curriculumSelected.length>0}}'>
     <text bindtap='qiandaoF'>{{dkText.name}}</text>
   </view>
 </view>

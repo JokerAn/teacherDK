@@ -3,7 +3,7 @@
     <image src='../../images/login/logo.png'></image>
   </view>
   <!-- <view class='emailLogin' wx:if='{{!authorization}}'>如果没有权限用邮箱登录 -->
-  <view class='emailLogin' wx:if='true'>
+  <view class='emailLogin'>
     <view>
       <text>用户名：</text>
       <input type='text' bindinput='userNameF' value='{{userName}}'></input>
@@ -18,8 +18,8 @@
   </view>
 
 
-  <view class='loginBtnBox' wx:else><!-- 如果有权限尝试用微信登录 -->
-    <button class="login_btn" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="loginAn" bindtap="loginAnLoading">微信登录</button>
+  <view class='loginBtnBox'>
+    <button class="login_btn" bindtap="wxLogin">微信登录</button>
   </view>
 
 </view>

@@ -12,7 +12,7 @@ Page({
    */
   data: {
     studentLists: [],
-      passData:null,
+    passData:null,
     isToday: null,//今天20190601
     date: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
     xingqi:null
@@ -60,12 +60,14 @@ Page({
 
         if (result.sucess){
           anUtil.showAlert('点名完成', 'success');
+          me.getStudentList()
         }
       
     })
   },
   //单独选中莫一个学生
   checkboxChange: function (e) {
+    console.log(e);
     let arrays = e.detail.value;
     console.log(arrays);
     let studentLists = this.data.studentLists;
@@ -111,7 +113,7 @@ Page({
           return item
         })
         me.setData({
-          studentLists:request.data
+          studentLists:request.data,
         })
         console.log(this.data.studentLists)
       }

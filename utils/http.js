@@ -39,7 +39,11 @@ class http {
           if (res.statusCode == 200 && res.data) {
             if (res.data.message == '未登录或认证过期') {
               anUtil.showAlert("请重新登录", 'none', 1500);
-              wx.clearStorage();
+              let loginEmail = wx.getStorageSync('loginEmail');
+              let loginPassword = wx.getStorageSync('loginPassword')
+              wx.clearStorageSync();
+              wx.setStorageSync('loginEmail', me.data.userName)
+              wx.setStorageSync('loginPassword', me.data.password)
               wx.navigateTo({
                 url: '/pages/login/login',
               })

@@ -10,8 +10,8 @@ Page({
 
   //页面的初始数据
   data: {
-    userName: 'admin',
-    userPwd: '123456',
+    userName: wx.getStorageSync('loginEmail')||'',
+    userPwd: wx.getStorageSync('loginPassword') || '',
     userInfo: {},
     userOnly: {},//openid等用户个人信息
     authorization: false,//用户是否确定让开发者使用权限
@@ -96,15 +96,12 @@ Page({
 
   
   },
-  loginAn: function (e) {
-    console.log('你点击了微信登录');
+  wxLogin(){
     wx.showLoading({
       title: '登录中'
     })
-    this.setData({
-      userInfo: e.detail,
-    })
-    console.log(e);
+    
+    this.bingOrUnbind();
   },
   loginAnLoading() {
     let me = this ;
@@ -127,6 +124,8 @@ Page({
         anUtil.showAlert('账户或密码错误')
       } else {
         if (result.sucess) {
+          wx.setStorageSync('loginEmail', me.data.userName)
+          wx.setStorageSync('loginPassword', me.data.userPwd)
           //设置假数据
           result.data.userInfo.userId=18;
           wx.setStorageSync('userToken', result.data.userInfo.token);
