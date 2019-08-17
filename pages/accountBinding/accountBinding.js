@@ -5,8 +5,12 @@ import {
 import {
   http
 } from '../../utils/http.js';
+import {
+  config
+} from '../../utils/api.js';
 var anUtil = new util();
 var anHttp = new http();
+var anConfig = new config();
 const app = getApp()
 Page({
 
@@ -56,7 +60,8 @@ Page({
     }
     let post_data = {
       username: _this.data.userName,
-      password: _this.data.password
+      password: _this.data.password.split(''),
+      openId: wx.getStorageSync('openId')
     }
     wx.showModal({
       title: '提示',
@@ -64,69 +69,27 @@ Page({
       success: function (res) {
         if (res.confirm) {
           anUtil.showLoading("绑定中...")
-          new Promise(function(resolve,reject){
-            anHttp.ajaxServe('post', 'https://api-test.ambow.com/sps/api/v1/login', post_data)
-              .then(result01 => {
-                console.log(result01);
-                if (result01 && result01.token && result01.tokenType) {
-                  resolve(result01)
-                  } else if (res.data.statusCode == 401) {
-                  anUtil.showAlert('账号或密码错误', 'none', 1500)
-                } else {
-                  anUtil.showAlert('没有权限', 'none', 1500)
-                }
+          anHttp.ajaxServe('post', anConfig.api.login, post_data).then(function (result) {
+            wx.hideLoading();
+            if (result.sucess) {
+              wx.setStorageSync('loginEmail', _this.data.userName)
+              //设置假数据
+              result.data.userInfo.userId = 18;
+              wx.setStorageSync('userToken', result.data.userInfo.token);
+              wx.setStorageSync('loginUserInfo', result.data.userInfo);
+              wx.switchTab({
+                url: '../../pages/curriculum/curriculum',
               })
-          }).then(function(result01){
-            console.log(result01.token)
-            wx.setStorage({
-              key: 'userToken',
-              data: result01.tokenType + ' ' + result01.token,
-            })
-            anHttp.ajaxServe('get', 'https://api-test.ambow.com/sps/api/v1/user/me', null)
-              .then((result02) => {
-                anHttp.ajaxServe('get', anConfig.api.getTeachersByUserId, {
-                  userId: wx.getStorageSync('loginUserInfo').userId
-                })
-                  .then(function (result08) {
-                    console.log(result08);
-                    if (result08.code == 'SUCCEED') {
-                      if (result08.data.length > 0) {
-                        wx.setStorageSync('orgId', result08.data[0].orgId);
-                      }
-
-                    }
-                  })
-                console.log(result02);
-                wx.setStorageSync('personId', result02.personId);
-                wx.setStorageSync('userDisplayName', result02.userDisplayName);
-                wx.setStorageSync('userId', result02.userId);
-                if (result02.accounts[0].permissionMap.hasOwnProperty('sps_teacher')) {
-                  console.log(_this.data.canshu);
-                  let post_data = {
-                    "relationId": _this.data.canshu.openid,
-                    "userId": result02.userId,
-                    "username": _this.data.userName
-                  }
-                  console.log(post_data)
-                  anHttp.ajaxServe('post', 'https://api-test.ambow.com/common/api/v1/auth/relation', post_data)
-                    .then(result03 => {
-                      console.log(result03);
-                      if (result03.id) {
-                        anUtil.hideLoading();
-                        anUtil.showAlert('绑定成功!', 'none', 1500)
-                        wx.setStorageSync('bind', result03);
-                        wx.switchTab({
-                          url: '../curriculum/curriculum',
-                        })
-                      }
-                    })
-                } else {
-                  anUtil.showAlert('请您更换账号绑定!', 'none', 1500)
-                }
-              })
+            } else {
+              anUtil.showAlert(result.message)
+            }
 
           })
           
+        }else{
+          wx.navigateTo({
+            url: '../../pages/login/login',
+          })
         }
       }
     })

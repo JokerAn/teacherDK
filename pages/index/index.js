@@ -13,7 +13,6 @@ const app = getApp()
 Page({
   data: {
     userInfo: {},
-    userOnly: {},
     authorization: true,
     canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
@@ -32,7 +31,6 @@ Page({
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,
-        userOnly: app.globalData.userOnly,
         authorization: app.globalData.authorization
       })
 
@@ -40,7 +38,6 @@ Page({
       app.userInfoReadyCallback = res => {
         this.setData({
           userInfo: res[0],
-          userOnly: res[1],
           authorization: res[2]
         })
       };
@@ -59,8 +56,7 @@ Page({
                 .then(function(result) {
                   console.log(result);
                   this.setData({
-                    userInfo: getUserInfoResult,
-                    userOnly: result,
+                    userInfo: getUserInfoResult
                   })
                 })
             }
@@ -118,10 +114,8 @@ Page({
             anHttp.ajaxServe('get', 'https://api-test.ambow.com/common/api/v1/auth/wechat?code=' + loginResult.code, null)
               .then(function(result) {
                 console.log(result);
-                app.globalData.userOnly = result;
                 app.globalData.authorization = true;
                 me.setData({
-                  userOnly: result,
                   authorization: true
                 })
               })

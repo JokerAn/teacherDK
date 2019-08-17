@@ -17,10 +17,10 @@ Page({
   logout(){
     console.log('你点击了退出');
     let loginEmail=wx.getStorageSync('loginEmail');
-    let loginPassword = wx.getStorageSync('loginPassword')
+    let openId = wx.getStorageSync('openId')
     wx.clearStorageSync();
-    wx.setStorageSync('loginEmail', me.data.userName)
-    wx.setStorageSync('loginPassword', me.data.password)
+    wx.setStorageSync('loginEmail', loginEmail)
+    wx.setStorageSync('openId', openId)
     wx.navigateTo({
       url: '../login/login',
     })

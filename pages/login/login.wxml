@@ -2,23 +2,26 @@
   <view>
     <image src='../../images/login/logo.png'></image>
   </view>
-  <view class='emailLogin'>
-    <view>
-      <text>用户名：</text>
-      <input type='text' bindinput='userNameF' value='{{userName}}'></input>
+  <view class='emailLogin' wx:if='{{emailAndPwdShow}}'>
+    <view class='login_group'>
+      <image src='/images/login/icon_account.png' class='login_man_ico'></image>
+      <input type='text' class='login_input' bindinput="userNameF" value='{{userName}}' placeholder='请输入账号' placeholder-class='login_phcolor' />
     </view>
-    <view>
-      <text>密码：</text>
-      <input type='password' bindinput='userPwdF' value='{{userPwd}}'></input>
+    <view class='login_group' style='margin-bottom:107rpx;'>
+      <image src='/images/login/icon_registration.png' class='login_phone_ico'></image>
+      <input type='password' class='login_input' value='{{userPwd}}' bindinput="userPwdF" placeholder='请输入密码' placeholder-class='login_phcolor' />
     </view>
     <view class='loginBtnBox'>
-      <button class="login_btn" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo"  bindtap="loginAnLoading">登录</button>
+      <button class="login_btn" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo"  bindtap="zhangMiLogin">登录</button>
     </view>
   </view>
 
 
   <view class='loginBtnBox'>
-    <button class="login_btn" bindtap="wxLogin">微信登录</button>
+    <button class="login_btn" open-type="getUserInfo" lang="zh_CN" bindgetuserinfo="onGotUserInfo" bindtap="wxLogin">微信登录</button>
+  </view>
+  <view class='loginBtnBox' wx:if='{{!emailAndPwdShow}}'>
+    <button class='login_btn' bindtap="emailAndPwd">账号密码登录</button>
   </view>
 
 </view>

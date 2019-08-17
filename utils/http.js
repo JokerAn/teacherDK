@@ -1,4 +1,3 @@
-// import { config } from 'config.js';
 import {
   util
 } from './util.js'
@@ -40,10 +39,10 @@ class http {
             if (res.data.message == '未登录或认证过期') {
               anUtil.showAlert("请重新登录", 'none', 1500);
               let loginEmail = wx.getStorageSync('loginEmail');
-              let loginPassword = wx.getStorageSync('loginPassword')
+              let openId = wx.getStorageSync('openId')
               wx.clearStorageSync();
               wx.setStorageSync('loginEmail', me.data.userName)
-              wx.setStorageSync('loginPassword', me.data.password)
+              wx.setStorageSync('openId', openId);
               wx.navigateTo({
                 url: '/pages/login/login',
               })

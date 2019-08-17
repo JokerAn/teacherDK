@@ -103,6 +103,11 @@ Page({
     })
       .then(function (result) {
         if (result.sucess) {
+          
+          if (result.data == null){
+            anUtil.showAlert('获取教师信息失败', 'none')
+            return
+          }
           //设置假数据
           result.data.teacherId = 58;
           wx.setStorageSync('teacherInfo', result.data);

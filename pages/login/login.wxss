@@ -4,7 +4,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  padding: 200rpx 0;
+  padding: 100rpx 0 0 0;
   box-sizing: border-box;
 }
 
@@ -54,3 +54,35 @@
   display: inline
 }
 .emailLogin{text-align: center}
+
+
+.login_group{
+  position: relative;
+  margin-bottom: 39rpx;
+}
+.login_input{
+  width: 260rpx;
+  height: 77rpx;
+  border-bottom: 1rpx solid #dfdfdf;
+  padding-left: 88rpx;
+  padding-right: 205rpx;
+}
+.login_group>image,.login_group>.login_code{
+  position: absolute;
+}
+.login_man_ico{
+  width: 44rpx;
+  height: 46rpx;
+  left: 11rpx;
+  top: 15rpx;
+}
+.login_phone_ico{
+  width: 30rpx;
+  height: 45rpx;
+  left: 18rpx;
+  top: 16rpx;
+}
+.login_phcolor{
+  font-size: 26rpx;
+  color: #dfdfdf
+}

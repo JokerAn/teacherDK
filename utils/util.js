@@ -1,5 +1,7 @@
+import { config } from './api.js'
+let anConfig = new config();
 class util {
-  constructor() {}
+  constructor() { }
   formatTime = date => {
     const year = date.getFullYear()
     const month = date.getMonth() + 1
@@ -32,7 +34,7 @@ class util {
   };
 
 
-  showAlert(title, icon = 'none', time = 2000, success = function() {}, fail = function() {}, complete) {
+  showAlert(title, icon = 'none', time = 2000, success = function () { }, fail = function () { }, complete) {
     wx.showToast({
       title: title,
       icon: icon,
@@ -76,17 +78,42 @@ class util {
       data: data
     })
   }
+  getOpenId() {
+    return new Promise(function (resolve, reject) {
+      if (wx.getStorageSync('openId')){
+        resolve({ openid: wx.getStorageSync('openId')})
+      }else{
+        console.log('正在获取wx.login的返回值');
+        wx.login({
+          success(res) {
+            if (res.code) {
+              console.log(res.code);
+              wx.request({ //发送请求
+                url: anConfig.api.getOpenId + '?code=' + res.code,
+                // url: anConfig.api.getOpenIdByJokerAn + '?code=' + res.code,
+                method: 'get',
+                success: result => {
+                  console.log(result);
+                  result.data.data = JSON.parse(result.data.data)
+                  console.log('根据code 换取 openid成功 请求成功 结果是 ', result.data.data);
+                  wx.setStorageSync('openId', result.data.data.openid);
+                  wx.setStorageSync('session_key', result.data.data.session_key);
+                  resolve(result.data.data)
+                }
+              })
+            }
+          }, fail(err) {
+            console.log('wx.login的返回值错误 错误是 ', err)
+          }
+        })
+      }
+    }).catch(function (err) {
+      console.log('根据code 换取 openid失败 ', err);
+    })
+
+  }
 };
-// getUserInfo=(successF,errorF)=>{
-//   wx.getUserInfo({
-//     success:function(){
-//       successF&&successF();
-//     },
-//     fail:function(){
-//       errorF&&errorF();
-//     }
-//   })
-// }
+
 export {
   util
 }
