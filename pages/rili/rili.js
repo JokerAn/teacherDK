@@ -179,6 +179,7 @@ Page({
     console.log(event.currentTarget.dataset.index);
     let curriculumList = this.data.curriculumList;
     curriculumList.forEach((item,index)=>{
+      
       if (index == event.currentTarget.dataset.index){
         item.showKaoQin = !item.showKaoQin;
       }else{
@@ -190,22 +191,33 @@ Page({
     })
   },
   getCurriculumByData(){
+
     let me = this;
     let nowTime = this.data.isToday.slice(0, 4) + '-' + this.data.isToday.slice(4,6) + '-' + this.data.isToday.slice(-2);
     anHttp.ajaxServe('get', anConfig.api.teacherCurriculumListByDate + '?date=' + nowTime + '&userId=' + wx.getStorageSync('loginUserInfo').userId +'&teacherId='+wx.getStorageSync('teacherInfo').teacherId, null)
       .then(function (result) {
         console.log(result);
         if (result.sucess) {
+
           if (result.data == null) { result.data = [] }
           result.data.map((item) => {
             item.showKaoQin = false;
             item.dakaTrueOrFalse01 = item.realStartTime?true:false
             item.dakaTrueOrFalse02 = item.realEndTime ? true : false
-            if (item.realStartTime && item.realEndTime){
-              item.kaoqin=true
+            if (me.data.teacherSignCnt==2) {
+              if (item.realStartTime && item.realEndTime) {
+                item.kaoqin = true
+              } else {
+                item.kaoqin = false
+              }
             }else{
-              item.kaoqin = false
+              if (item.realStartTime) {
+                item.kaoqin = true
+              } else {
+                item.kaoqin = false
+              }
             }
+            
             item.startTimeCopy = anUtil.shifen(item.startTime);
             item.endTimeCopy = anUtil.shifen(item.endTime);
             item.realStartTimeCopy = anUtil.shifen(item.realStartTime);

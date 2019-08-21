@@ -129,12 +129,12 @@ Page({
       isToday: isToday,
       weekDay: weekDay
     })
-    anHttp.ajaxServe('get', anConfig.api.teacherCurriculumListByDate, {
-      teacherId: this.data.teacherId, date: '2019-08-13'
-    })  
     // anHttp.ajaxServe('get', anConfig.api.teacherCurriculumListByDate, {
-    //   teacherId: this.data.teacherId, date: anUtil.getdates(nowTime, '-')
-    // })
+    //   teacherId: this.data.teacherId, date: '2019-08-13'
+    // })  
+    anHttp.ajaxServe('get', anConfig.api.teacherCurriculumListByDate, {
+      teacherId: this.data.teacherId, date: anUtil.getdates(nowTime, '-')
+    })
       .then(function (result) {
         if (result.sucess) {
           if (result.data == null) { result.data = [] }
