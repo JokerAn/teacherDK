@@ -84,8 +84,8 @@ Page({
   },
   loginAjaxOverDo(result) {
     console.log(result);
-    //设置假数据
-    result.data.userInfo.userId = 18;
+    //设置假数据result.data.userInfo.userId = 18;
+    
     wx.setStorageSync('userToken', result.data.userInfo.token);
     wx.setStorageSync('loginUserInfo', result.data.userInfo);
     wx.switchTab({
@@ -106,6 +106,7 @@ Page({
         console.log('根据openid查询绑定状态成功 结果是 ', result02)
         wx.hideLoading();
         if (result02.sucess) {
+          wx.setStorageSync('wxBind',true)
           me.loginAjaxOverDo(result02);
         } else {
           wx.navigateTo({

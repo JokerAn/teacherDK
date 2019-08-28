@@ -19,7 +19,8 @@ class config {
     studentQD: this.configUrl + 'business/signMiniProgram/putStudentSign',//学生签到
     getRiLiAll: this.configUrl + 'business/signMiniProgram/getCalendarSignRecord',//获取考勤日历整体标记
     getTeachersByUserId: this.configUrl + 'business/signMiniProgram/getTeachersByUserId',//根据userId获取教师信息
-
+    
+    logOut: this.configUrl + 'wechat-api/loginout',//退出
   }
 }
 export {

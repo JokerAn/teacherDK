@@ -1,6 +1,9 @@
 <view id='mySetting'>
+<view class='logout' wx:if='{{wxBind}}'>
+  <text bindtap="logouts" data-type='1'>退出登录并解绑</text>
+</view>
 <view class='logout'>
-  <text bindtap="logout">退出登录</text>
+  <text bindtap="logouts" data-type='0'>退出登录</text>
 </view>
 
 </view>

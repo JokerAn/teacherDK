@@ -9,6 +9,7 @@ class http {
     // this.httpUrl = config.configUrl;
   }
   ajaxServe(Type, url, data, jsonStr) {
+    let me = this;
     if (!Type) {
       console.warn('请求方式未定义');
       return;
@@ -41,7 +42,7 @@ class http {
               let loginEmail = wx.getStorageSync('loginEmail');
               let openId = wx.getStorageSync('openId')
               wx.clearStorageSync();
-              wx.setStorageSync('loginEmail', me.data.userName)
+              wx.setStorageSync('loginEmail', loginEmail)
               wx.setStorageSync('openId', openId);
               wx.navigateTo({
                 url: '/pages/login/login',

@@ -11,6 +11,9 @@
         <view class='address'>{{item.classroomName||''}}</view>
         <view class='studentDM' catchtap='studentDM' data-index='{{index}}'>学生点名</view>
       </view>
+      <view wx:if='{{curriculumList.length==0}}'>
+        <view>暂无课程</view>
+      </view>
     </view>
   </scroll-view>
   

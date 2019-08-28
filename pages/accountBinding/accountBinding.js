@@ -73,8 +73,8 @@ Page({
             wx.hideLoading();
             if (result.sucess) {
               wx.setStorageSync('loginEmail', _this.data.userName)
-              //设置假数据
-              result.data.userInfo.userId = 18;
+              //设置假数据result.data.userInfo.userId = 18;
+              
               wx.setStorageSync('userToken', result.data.userInfo.token);
               wx.setStorageSync('loginUserInfo', result.data.userInfo);
               wx.switchTab({

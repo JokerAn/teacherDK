@@ -49,7 +49,7 @@ Page({
       yearStr:me.data.nowYear,
       monthStr: me.data.nowMonth,
         userid:wx.getStorageSync('loginUserInfo').userId,
-      teacherId: wx.getStorageSync('teacherInfo').teacherId
+      teacherId: wx.getStorageSync('teacherInfo').id
     }).then((result)=>{
       console.log(result);
       if (result.sucess){
@@ -194,7 +194,7 @@ Page({
 
     let me = this;
     let nowTime = this.data.isToday.slice(0, 4) + '-' + this.data.isToday.slice(4,6) + '-' + this.data.isToday.slice(-2);
-    anHttp.ajaxServe('get', anConfig.api.teacherCurriculumListByDate + '?date=' + nowTime + '&userId=' + wx.getStorageSync('loginUserInfo').userId +'&teacherId='+wx.getStorageSync('teacherInfo').teacherId, null)
+    anHttp.ajaxServe('get', anConfig.api.teacherCurriculumListByDate + '?date=' + nowTime + '&userId=' + wx.getStorageSync('loginUserInfo').userId +'&teacherId='+wx.getStorageSync('teacherInfo').id, null)
       .then(function (result) {
         console.log(result);
         if (result.sucess) {

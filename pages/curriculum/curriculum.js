@@ -74,8 +74,7 @@ Page({
         dkText: {name:'已签到',msg:'请勿重复签到！'}
       })
     }else{
-      //上课前30个小时和下课后30个小时之内可以打卡 
-      console.log(this.data.qiandaoTime);
+      //上课前 this.data.qiandaoTime 个小时和下课后 this.data.qiandaoTime 个小时之内可以打卡
       if ((nowTime - new Date(this.data.curriculumList[indexs].endTime)) / 3600000 > this.data.qiandaoTime) {
         this.setData({
           canDK: false,
@@ -102,17 +101,17 @@ Page({
       userId: wx.getStorageSync('loginUserInfo').userId
     })
       .then(function (result) {
-        if (result.sucess) {
+        if (result.status =='SUCCESS') {
           
           if (result.data == null){
             anUtil.showAlert('获取教师信息失败', 'none')
             return
           }
-          //设置假数据
-          result.data.teacherId = 58;
+          //设置假数据result.data.id = 58;
+          
           wx.setStorageSync('teacherInfo', result.data);
           me.setData({
-            teacherId: result.data.teacherId,
+            teacherId: result.data.id,
             teacherSignCnt: result.data.teacherSignCnt
           })
           me.getPageList();
@@ -129,6 +128,8 @@ Page({
       isToday: isToday,
       weekDay: weekDay
     })
+    console.log(this.data.weekDay);
+    console.log(this.data.isToday);
     // anHttp.ajaxServe('get', anConfig.api.teacherCurriculumListByDate, {
     //   teacherId: this.data.teacherId, date: '2019-08-13'
     // })  
