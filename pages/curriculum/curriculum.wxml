@@ -9,6 +9,7 @@
         <view class='curriculumOneTime'>{{item.startTimeCopy}}-{{item.endTimeCopy}}</view>
         <view class='curriculumName'><text>{{item.className||''}}</text>{{item.curriculumName||''}}</view>
         <view class='address'>{{item.classroomName||''}}</view>
+        <view class='qiandao_biaoshi' wx:if='{{item.realStartTime}}'>已签到</view>
         <view class='studentDM' catchtap='studentDM' data-index='{{index}}'>学生点名</view>
       </view>
       <view wx:if='{{curriculumList.length==0}}'>

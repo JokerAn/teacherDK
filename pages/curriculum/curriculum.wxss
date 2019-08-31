@@ -105,6 +105,18 @@
 .active>.studentDM{
   background:#EA2121
 }
+.qiandao_biaoshi{
+  position: absolute;
+  color:#FF3030;
+  font-size: 24rpx;
+  border-radius: 6rpx;
+  width:182rpx;
+  height:72rpx;
+  line-height: 72rpx;
+  text-align: center;
+  top:61rpx;
+  right: 230rpx;
+}
 .twoBtn text.xiakeActive{
   background: #EA2121;
   color:#fff;

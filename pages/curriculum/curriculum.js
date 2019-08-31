@@ -131,7 +131,7 @@ Page({
     console.log(this.data.weekDay);
     console.log(this.data.isToday);
     // anHttp.ajaxServe('get', anConfig.api.teacherCurriculumListByDate, {
-    //   teacherId: this.data.teacherId, date: '2019-08-13'
+    //   teacherId: this.data.teacherId, date: '2019-08-30'
     // })  
     anHttp.ajaxServe('get', anConfig.api.teacherCurriculumListByDate, {
       teacherId: this.data.teacherId, date: anUtil.getdates(nowTime, '-')
